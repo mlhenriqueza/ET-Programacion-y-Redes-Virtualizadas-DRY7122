@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "2b33c0bd-7278-4312-bb12-cd2e38f01d14",
+		"name": "LAB CSR1000v",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50795794"
+	},
+	"item": [
+		{
+			"name": "DELETE RESTCONF",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "cisco123!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://192.168.56.101/restconf/data/ietf-interfaces:interfaces/interface=Loopback11",
+					"protocol": "https",
+					"host": [
+						"192",
+						"168",
+						"56",
+						"101"
+					],
+					"path": [
+						"restconf",
+						"data",
+						"ietf-interfaces:interfaces",
+						"interface=Loopback11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT RESTCONF",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "cisco123!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"ietf-interfaces:interface\": {\n    \"name\": \"Loopback22\",\n    \"type\": \"iana-if-type:softwareLoopback\",\n    \"enabled\": false,\n    \"ietf-ip:ipv4\": {\n      \"address\": [\n        {\n          \"ip\": \"22.22.22.22\",\n          \"netmask\": \"255.255.255.255\"\n        }\n      ]\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://192.168.56.101/restconf/data/ietf-interfaces:interfaces/interface=Loopback22",
+					"protocol": "https",
+					"host": [
+						"192",
+						"168",
+						"56",
+						"101"
+					],
+					"path": [
+						"restconf",
+						"data",
+						"ietf-interfaces:interfaces",
+						"interface=Loopback22"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET RESTCONF",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "cisco123!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://192.168.56.101/restconf/data/ietf-interfaces:interfaces",
+					"protocol": "https",
+					"host": [
+						"192",
+						"168",
+						"56",
+						"101"
+					],
+					"path": [
+						"restconf",
+						"data",
+						"ietf-interfaces:interfaces"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://template.postman-echo.com"
+		}
+	]
+}
