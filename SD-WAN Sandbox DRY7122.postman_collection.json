@@ -1,0 +1,137 @@
+{
+  "info": {
+    "_postman_id": "0723836b-c37f-4faf-be66-32f855535efe",
+    "name": "SD-WAN Sandbox DRY7122",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50795794"
+  },
+  "item": [
+    {
+      "name": "JSESSIONID",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "j_username",
+              "value": "admin",
+              "type": "text",
+              "uuid": "8cf57a41-6d43-4b29-a524-806090259af1"
+            },
+            {
+              "key": "j_password",
+              "value": "C1sco12345",
+              "type": "text",
+              "uuid": "7d26ba7c-9079-4619-b18f-7050b81e3747"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://10.10.20.90:443/j_security_check",
+          "protocol": "https",
+          "host": [
+            "10",
+            "10",
+            "20",
+            "90"
+          ],
+          "port": "443",
+          "path": [
+            "j_security_check"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "XSRF-TOKEN",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "j_username",
+              "value": "admin",
+              "type": "text",
+              "uuid": "53b2812e-80e6-45c3-b0b9-9b5d9d6da0ef"
+            },
+            {
+              "key": "j_password",
+              "value": "C1sco12345",
+              "type": "text",
+              "uuid": "b75aeef5-ff2d-40c7-88f3-8e490c9461e0"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://10.10.20.90:443/dataservice/client/token",
+          "protocol": "https",
+          "host": [
+            "10",
+            "10",
+            "20",
+            "90"
+          ],
+          "port": "443",
+          "path": [
+            "dataservice",
+            "client",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Device Monitor",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-XSRF-TOKEN",
+            "value": "1C39778B298F43AD0E6994BEEC18BC97CDDBE9AC394C4D76BB5A5B7FB9F807AE167075DA67F5F01A96581C3D52C9B32B96D3",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://10.10.20.90:443/dataservice/device/monitor",
+          "protocol": "https",
+          "host": [
+            "10",
+            "10",
+            "20",
+            "90"
+          ],
+          "port": "443",
+          "path": [
+            "dataservice",
+            "device",
+            "monitor"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Statistics Interfaces",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
