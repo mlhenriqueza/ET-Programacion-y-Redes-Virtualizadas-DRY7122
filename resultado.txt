@@ -1,0 +1,335 @@
+=== Configurando EIGRP Nombrado IPv4/IPv6 ===
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+CSR1kv(config)#ipv6 unicast-routing
+CSR1kv(config)#router eigrp EXAMEN-DRY7122
+CSR1kv(config-router)# address-family ipv4 unicast autonomous-system 100
+CSR1kv(config-router-af)#  af-interface GigabitEthernet1
+CSR1kv(config-router-af-interface)#   passive-interface
+CSR1kv(config-router-af-interface)#  exit-af-interface
+CSR1kv(config-router-af)#  network 0.0.0.0
+CSR1kv(config-router-af)# exit-address-family
+CSR1kv(config-router)#router eigrp EXAMEN-DRY7122
+CSR1kv(config-router)# address-family ipv6 unicast autonomous-system 100
+CSR1kv(config-router-af)#  af-interface GigabitEthernet1
+CSR1kv(config-router-af-interface)#   passive-interface
+CSR1kv(config-router-af-interface)#  exit-af-interface
+CSR1kv(config-router-af)# topology base
+CSR1kv(config-router-af-topology)# exit-af-topology
+CSR1kv(config-router-af)# exit-address-family
+CSR1kv(config-router)#end
+CSR1kv#
+
+=== Verificando configuracion EIGRP (show running-config | section eigrp) ===
+router eigrp EXAMEN-DRY7122
+ !
+ address-family ipv4 unicast autonomous-system 100
+  !
+  af-interface GigabitEthernet1
+   passive-interface
+  exit-af-interface
+  !
+  topology base
+  exit-af-topology
+  network 0.0.0.0
+ exit-address-family
+ !
+ address-family ipv6 unicast autonomous-system 100
+  !
+  af-interface GigabitEthernet1
+   passive-interface
+  exit-af-interface
+  !
+  topology base
+  exit-af-topology
+ exit-address-family
+
+=== Estado e IP de las interfaces (show ip interface brief) ===
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.56.101  YES DHCP   up                    up      
+Loopback33             unassigned      YES unset  up                    up      
+
+=== Running-config completo (show running-config) ===
+Building configuration...
+
+Current configuration : 4654 bytes
+!
+! Last configuration change at 01:11:29 UTC Wed Jul 8 2026 by admin
+!
+version 16.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname CSR1kv
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+ip domain name et.local
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+ipv6 unicast-routing
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1017546684
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1017546684
+ revocation-check none
+ rsakeypair TP-self-signed-1017546684
+!
+!
+crypto pki certificate chain TP-self-signed-1017546684
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 31303137 35343636 3834301E 170D3236 30373038 30303032 
+  32345A17 0D333030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 30313735 
+  34363638 34308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 0100A846 C3595256 E445F41B FFDB08D9 FFC80168 2512C56C 57618996 
+  B5638FED 788EF46E 21039D35 7F67CC4C 75FF4877 AE31FAD4 D81E305A DE12462D 
+  551E41AA 254101E0 CD495DA6 CB77B949 FF0C75A8 B89A1100 A942A0E3 AFA6F3FE 
+  66D154F8 974734A1 A5C260BE CA1A7409 2C46B278 AAC41D29 2A563C00 33A3BCD9 
+  4FA22E90 7FCAAC6A EFCC9EA9 6C1AF543 815FF5FD F0CCD7EB DCA1B64C D54529F7 
+  76F7F484 8B8A986F 84012D24 72B20E61 509BBF77 982FB9BF 8FCA7156 67EFA872 
+  49DDC055 D328F384 F498148A 542765B4 4D64E83D 06AAA78A 7CA23530 09D3E420 
+  54D22888 43BDD2EB 15E250F0 00CEFFF2 B83B3D19 F2743585 BDACCD1F 475395FC 
+  92E22EF4 7EED0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 141C09C3 499E2AD9 8BFE9B8E 6D87406C F4E6043E 
+  0B301D06 03551D0E 04160414 1C09C349 9E2AD98B FE9B8E6D 87406CF4 E6043E0B 
+  300D0609 2A864886 F70D0101 05050003 82010100 9A10FEBC B9527BA3 62B291A6 
+  944BBC5E 29D3E71D 2C5B33A4 99A7FD77 1FD53A37 26B9A661 F9A3C0DC E6782191 
+  8BA4A1C9 DDA4A971 4B1976E2 187DE90B B211BBDA 54A72E2C CC7897B9 097683A2 
+  C5DE083E 1D9E7F90 B1EF8554 86376820 04CDD804 FADCD5AD 5734CA70 75AECF69 
+  1BF4D109 8F601EE7 7E77B382 EBE0A31F FB44BBFD 48E4D817 1E15AB70 E3F32382 
+  527240D2 F687E14F 8704B632 10CEA697 408B3B47 63FD3210 4EE026FE 63871CD8 
+  831DD0DC 99506199 3063904C 475F1898 C258AC69 9028E8FF 88B4DCEE 5E46CD87 
+  3EFED490 0379B9CE C16E5332 168DA859 15C162DC 4CCD63AF 71F947AD E360F96E 
+  0A55D022 3652982C A73F910A 4833CB4E 7D414C47
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 98UDF0JGGCB
+no license smart enable
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+!
+netconf-yang
+!
+restconf
+!
+username cisco privilege 15 password 0 cisco123!
+username admin privilege 15 password 0 cisco123!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback33
+ no ip address
+ ipv6 address FE80::1 link-local
+ ipv6 address 3001:ABCD:ABCD:1::1/128
+ ipv6 enable
+!
+interface GigabitEthernet1
+ description VBox
+ ip address dhcp
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+!
+router eigrp EXAMEN-DRY7122
+ !
+ address-family ipv4 unicast autonomous-system 100
+  !
+  af-interface GigabitEthernet1
+   passive-interface
+  exit-af-interface
+  !
+  topology base
+  exit-af-topology
+  network 0.0.0.0
+ exit-address-family
+ !
+ address-family ipv6 unicast autonomous-system 100
+  !
+  af-interface GigabitEthernet1
+   passive-interface
+  exit-af-interface
+  !
+  topology base
+  exit-af-topology
+ exit-address-family
+!
+ip forward-protocol nd
+no ip http server
+ip http authentication local
+ip http secure-server
+!
+ip ssh version 2
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+banner motd ^C
+*                                           *
+**                                         **
+***                                       ***
+***  Cisco Networking Academy             ***
+***   Emerging Technologies Workshop:     ***
+***    Model Driven Programmability       ***
+***                                       ***
+***  This software is provided for        ***
+***   Educational Purposes                ***
+***    Only in Networking Academies       ***
+***                                       ***
+**                                         **
+*                                           *
+^C
+!
+line con 0
+ logging synchronous
+ stopbits 1
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+!
+!
+!
+!
+!
+end
+
+
+=== Version del equipo (show version) ===
+Cisco IOS XE Software, Version 16.09.05
+Cisco IOS Software [Fuji], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2020 by Cisco Systems, Inc.
+Compiled Thu 30-Jan-20 18:48 by mcpre
+
+
+Cisco IOS-XE software, Copyright (c) 2005-2020 by cisco Systems, Inc.
+All rights reserved.  Certain components of Cisco IOS-XE software are
+licensed under the GNU General Public License ("GPL") Version 2.0.  The
+software code licensed under GPL Version 2.0 is free software that comes
+with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+GPL code under the terms of GPL Version 2.0.  For more details, see the
+documentation or "License Notice" file accompanying the IOS-XE software,
+or the applicable URL provided on the flyer accompanying the IOS-XE
+software.
+
+
+ROM: IOS-XE ROMMON
+
+CSR1kv uptime is 1 hour, 10 minutes
+Uptime for this control processor is 1 hour, 15 minutes
+System returned to ROM by reload
+System image file is "bootflash:packages.conf"
+Last reload reason: reload
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+License Level: ax
+License Type: Default. No valid license found.
+Next reload license Level: ax
+
+
+Smart Licensing Status: Smart Licensing is DISABLED
+
+cisco CSR1000V (VXE) processor (revision VXE) with 2182252K/3075K bytes of memory.
+Processor board ID 98UDF0JGGCB
+1 Gigabit Ethernet interface
+32768K bytes of non-volatile configuration memory.
+3985032K bytes of physical memory.
+7774207K bytes of virtual hard disk at bootflash:.
+0K bytes of WebUI ODM Files at webui:.
+
+Configuration register is 0x2102
+
