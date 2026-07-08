@@ -1,0 +1,20 @@
+---
+- name: CONFIGURAR IPV6 EN LOOPBACK33
+  hosts: CSR1kv
+  gather_facts: false
+  connection: network_cli
+  tasks:
+    - name: CREAR LOOPBACK33 CON IPV6 Y LINK-LOCAL
+      ios_config:
+        lines:
+          - ipv6 enable
+          - ipv6 address FE80::1 link-local
+          - ipv6 address 3001:ABCD:ABCD:1::1/128
+        parents: interface Loopback33
+    - name: VERIFICAR CONFIGURACION
+      ios_command:
+        commands:
+          - show ipv6 interface brief
+      register: salida
+    - debug:
+        var: salida.stdout_lines
